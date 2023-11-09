@@ -1,0 +1,27 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-11-09 17:13:27.419895",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2023-11-09 18:22:08.165834",
+ "modified_by": "Administrator",
+ "module": "Bank Management App",
+ "name": "bank Management",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "User Account",
+ "report_name": "bank Management",
+ "report_script": "frappe.query_reports[\"Users With High Balance\"] = {\n    \"filters\": [\n        {\n            \"fieldname\": \"branch\",\n            \"label\": __(\"Branch\"),\n            \"fieldtype\": \"Link\",\n            \"options\": \"YourBranchDoctype\",\n            \"default\": frappe.defaults.get_user_default(\"YourBranchDoctype\")  // Replace with the actual branch DocType\n        }\n    ],\n    \"script\": function(report) {\n        return {\n            filters: [\n                [\"User Account\", \"current_balance\", \">\", 140000],\n                [\"User Account\", \"branch\", \"=\", report.filters.branch]\n            ]\n        };\n    }\n}",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}
